@@ -1,17 +1,19 @@
 export default {
+    name: 'mail-filter',
     template: `
-        <section class="book-filter">
+        <section class="mail-filter">
             <fieldset>
                 <legend>Filter Mails</legend>
                 <input 
                     v-model="filterBy.txt" 
                     @input="onSetFilterBy"
                     type="text" 
-                    placeholder="search">
+                    placeholder="search"/>
                 
                 
-                <input type="checkbox" value="true" v-model="filterBy.isRead" @input="onSetFilterBy"/> Read
-                <input type="checkbox" value="false" v-model="filterBy.isRead" @input="onSetFilterBy"/> Unread
+                <input type="radio" value="all"  v-model="filterBy.isRead" @input="onSetFilterBy"/>All
+                <input type="radio" value="true"  v-model="filterBy.isRead" @input="onSetFilterBy"/>Read
+                <input type="radio" value="false"  v-model="filterBy.isRead" @input="onSetFilterBy"/>Unread 
             </fieldset>
         </section>
     `,
@@ -19,13 +21,15 @@ export default {
         return {
             filterBy: {
                 txt: '',
-                isRead: undefined
+                isRead: 'all'
             }
         }
     },
     methods: {
         onSetFilterBy() {
-            this.$emit('filter', {...this.filterBy})
+            setTimeout(() => {
+                this.$emit('filter', { ...this.filterBy })
+            }, 300)
         }
     }
 }

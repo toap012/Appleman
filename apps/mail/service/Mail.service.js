@@ -3,12 +3,16 @@ import { storageService } from '../../../services/async-storage.service.js'
 
 const PAGE_SIZE = 5
 const MAIL_KEY = 'mailDB'
+const LOGGED_USER_KEY = 'loggedUserDB'
+const TRASH_MAIL_KEY = 'trashMailsDB'
+const DRAFT_MAILS_KEY = 'draftMailsDB'
 
 var gFilterBy = {}
 var gSortBy = {}
 var gPageIdx
 
 _createMails()
+_logUser()
 
 
 export const mailService = {
@@ -20,11 +24,15 @@ export const mailService = {
     getNextMailId,
     getFilterBy,
     setFilterBy,
+    getTrash,
+    getLogedUser,
+    getDraftMails
 }
 window.mailService = mailService
 
 function query() {
     return storageService.query(MAIL_KEY)
+
     // .then(books => {
     //     if (gFilterBy.txt) {
     //         const regex = new RegExp(gFilterBy.txt, 'i')
@@ -65,7 +73,7 @@ function save(mail) {
     }
 }
 
-function getEmptyMail(subject = '', body, isRead) {
+function getEmptyMail(subject = '', body, isRead, to) {
     return {
         id: '',
         subject,
@@ -74,8 +82,17 @@ function getEmptyMail(subject = '', body, isRead) {
         sentAt: Date.now(),
         removedAt: null,
         from: 'momo@momo.com',
-        to: 'user@appsus.com'
+        to,
     }
+}
+function getTrash() {
+    return storageService.query(TRASH_MAIL_KEY)
+}
+function getLogedUser() {
+    return utilService.loadFromStorage(LOGGED_USER_KEY)
+}
+function getDraftMails() {
+    return storageService.query(DRAFT_MAILS_KEY)
 }
 
 function getFilterBy() {
@@ -112,16 +129,28 @@ function _createMails() {
     let mails = utilService.loadFromStorage(MAIL_KEY)
     if (!mails || !mails.length) {
         mails = []
-        mails.push(_createMail('Coockies', true))
-        mails.push(_createMail('Mind games', false))
-        mails.push(_createMail('Javascript', false))
-        mails.push(_createMail('Remeber me?', true))
+        mails.push(_createMail('Coockies', true, 'user@appleman.com'))
+        mails.push(_createMail('Mind games', false, 'user@appleman.com'))
+        mails.push(_createMail('Javascript', false, 'bla@appleman.com'))
+        mails.push(_createMail('Remeber me?', true, 'agag@appleman.com'))
         utilService.saveToStorage(MAIL_KEY, mails)
     }
 }
 
-function _createMail(subject, isRead, body = utilService.makeLorem(5)) {
-    const mail = getEmptyMail(subject, body, isRead)
+function _createMail(subject, isRead, to, body = utilService.makeLorem(5)) {
+    const mail = getEmptyMail(subject, body, isRead, to)
     mail.id = utilService.makeId()
     return mail
+}
+
+function _logUser() {
+    let loggedinUser = utilService.loadFromStorage(LOGGED_USER_KEY)
+    if (!loggedinUser) {
+
+        loggedinUser = {
+            email: 'user@appleman.com',
+            fullname: 'Mahatma Appsus'
+        }
+        utilService.saveToStorage(LOGGED_USER_KEY, loggedinUser)
+    }
 }
