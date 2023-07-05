@@ -3,12 +3,15 @@ import { storageService } from '../../../services/async-storage.service.js'
 
 const PAGE_SIZE = 5
 const MAIL_KEY = 'mailDB'
+const LOGGED_USER_KEY = 'loggedUserDB'
+const DRAFT_MAILS_KEY = 'draftMailsDB'
 
 var gFilterBy = {}
 var gSortBy = {}
 var gPageIdx
 
 _createMails()
+_logUser()
 
 
 export const mailService = {
@@ -20,11 +23,16 @@ export const mailService = {
     getNextMailId,
     getFilterBy,
     setFilterBy,
+    getUnreadMailsCount,
+    getLogedUser,
+    getDraftMails,
+    saveDraft
 }
 window.mailService = mailService
 
 function query() {
     return storageService.query(MAIL_KEY)
+
     // .then(books => {
     //     if (gFilterBy.txt) {
     //         const regex = new RegExp(gFilterBy.txt, 'i')
@@ -65,17 +73,26 @@ function save(mail) {
     }
 }
 
-function getEmptyMail(subject = '', body, isRead) {
+function getEmptyMail(subject = '', body = utilService.makeLorem(50), isRead, to) {
     return {
         id: '',
         subject,
         body,
         isRead,
-        sentAt: Date.now(),
+        sentAt: null,
         removedAt: null,
         from: 'momo@momo.com',
-        to: 'user@appsus.com'
+        to,
     }
+}
+function getLogedUser() {
+    return utilService.loadFromStorage(LOGGED_USER_KEY)
+}
+function getDraftMails() {
+    return storageService.query(DRAFT_MAILS_KEY)
+}
+function saveDraft(mail) {
+    return storageService.post(DRAFT_MAILS_KEY, mail)
 }
 
 function getFilterBy() {
@@ -96,12 +113,24 @@ function getNextMailId(mailId) {
             return mails[idx + 1].id
         })
 }
+
+function getUnreadMailsCount() {
+    return storageService.query(MAIL_KEY)
+        .then(mails => {
+            const unreadMailCount = mails.reduce((map, mail) => {
+                if (!mail.isRead) map.unread++
+                return map
+            }, { unread: 0 })
+            return unreadMailCount
+        })
+}
+
 function _setNextPrevMailId(mail) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
             const mailIdx = mails.findIndex(currMail => currMail.id === mail.id)
-            mail.nextBookId = mails[mailIdx + 1] ? mails[mailIdx + 1].id : mails[0].id
-            mail.prevBookId = mails[mailIdx - 1]
+            mail.nexMailId = mails[mailIdx + 1] ? mails[mailIdx + 1].id : mails[0].id
+            mail.prevMailId = mails[mailIdx - 1]
                 ? mails[mailIdx - 1].id
                 : mails[mails.length - 1].id
             return mail
@@ -112,16 +141,30 @@ function _createMails() {
     let mails = utilService.loadFromStorage(MAIL_KEY)
     if (!mails || !mails.length) {
         mails = []
-        mails.push(_createMail('Coockies', true))
-        mails.push(_createMail('Mind games', false))
-        mails.push(_createMail('Javascript', false))
-        mails.push(_createMail('Remeber me?', true))
+        mails.push(_createMail('Coockies', false, 'user@appleman.com'))
+        mails.push(_createMail('Mind games', false, 'user@appleman.com'))
+        mails.push(_createMail('Javascript', true, 'bla@appleman.com'))
+        mails.push(_createMail('Remeber me?', true, 'agag@appleman.com'))
         utilService.saveToStorage(MAIL_KEY, mails)
     }
 }
 
-function _createMail(subject, isRead, body = utilService.makeLorem(5)) {
-    const mail = getEmptyMail(subject, body, isRead)
+function _createMail(subject, isRead, to, body = utilService.makeLorem(5)) {
+    const mail = getEmptyMail(subject, body, isRead, to)
     mail.id = utilService.makeId()
+    mail.sentAt = Date.now()
+    console.log(mail);
     return mail
+}
+
+function _logUser() {
+    let loggedinUser = utilService.loadFromStorage(LOGGED_USER_KEY)
+    if (!loggedinUser) {
+
+        loggedinUser = {
+            email: 'user@appleman.com',
+            fullname: 'Mahatma Appsus'
+        }
+        utilService.saveToStorage(LOGGED_USER_KEY, loggedinUser)
+    }
 }
