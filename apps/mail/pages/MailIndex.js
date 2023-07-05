@@ -39,6 +39,11 @@ export default {
             unRead: 0
         }
     },
+    watch: {
+        mails(){
+            this.loadMails()
+        } 
+    },
     created() {
         this.loadMails()
         this.getLogedUser()
@@ -49,6 +54,7 @@ export default {
             mailService.query()
                 .then(mails => {
                     this.mails = mails
+                    console.log(mails);
                 })
         },
         getLogedUser() {
