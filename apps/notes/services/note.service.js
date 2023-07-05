@@ -109,7 +109,7 @@ function _createNotes() {
                 type: 'NoteImg',
                 isPinned: false,
                 info: {
-                url: 'http://some-img/me',
+                url: 'http://unsplash.it/100/100',
                 title: 'Bobi and Me'
                 },
                 style: {

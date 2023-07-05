@@ -1,15 +1,27 @@
+import NoteTxt from "./NoteTxt.js";
+import NoteImg from "./NoteImg.js";
+import NoteVideo from "./NoteVideo.js";
+import NoteTodos from "./NoteTodos.js";
+
+
 export default{
     name:
     'NotePreview',
     props: ['cmp'],
     template:`
-    <article>
+ 
         <component :is="cmp.type" :info="cmp.info"
         @changeInfo="updateNote" />
-    </article>
+ 
     `,
     created(){
         console.log(this.cmp);
     },
+    components:{
+        NoteTxt,
+        NoteImg,
+        NoteVideo,
+        NoteTodos,
+    }
 
 }
