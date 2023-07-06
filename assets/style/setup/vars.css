@@ -3,10 +3,13 @@
   --clr2: rgb(240, 240, 240);
   --clr3: rgb(155, 155, 155);
   --clr4: rgb(96, 96, 96);
-  --clr5: rgb(0, 0, 0);
+  --clr5: rgb(109, 193, 246);
 
 
-  --secondary-clr1: rgb(88, 201, 58);
+  --secondary-clr1: rgb(253, 253, 253);
   --secondary-clr2: rgb(122, 7, 70);
 
-} 
+
+  --mainPadding: 1.6rem;
+
+}

@@ -1,0 +1,18 @@
+.folder-btn {
+    font-size: .875rem;
+    font-family: "Google Sans",Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    border: none;
+    color: #5f6368;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    min-width: 48px;
+
+}
+.new-mail-btn {
+    height: 80px;
+    overflow: hidden;
+    text-transform: none;
+}

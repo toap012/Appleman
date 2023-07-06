@@ -11,8 +11,6 @@ export default {
     name: 'mail-index',
     template: `
         <section class="mail-index">
-            <h1> hello mail</h1>
-            <button @click="newMail">New Mail</button>
             <EmailCompose 
                 v-if="newDraft"
                 :newDraft="newDraft"
@@ -20,12 +18,12 @@ export default {
                 @sendMail="sendMail"
                 @close="closeWindow"/>
             <MailFilter @filter="setFilterBy"/>
-            <span>unRead mails: {{unRead}}</span>
-            <EmailFolderList @filterByFolder="setFilterByFolder"/>
-            <MailList
+            <!-- <span>unRead mails: {{unRead}}</span> -->
+            <EmailFolderList @filterByFolder="setFilterByFolder" @click="newMail"/>
+            <!-- <MailList
                 v-if="mails"
-                :mails="filteredMails"/>
-
+                :mails="filteredMails"/> -->
+            <RouterView :mails="filteredMails" />
         </section>
     `,
     data() {
@@ -54,7 +52,6 @@ export default {
             mailService.query()
                 .then(mails => {
                     this.mails = mails
-                    console.log(mails);
                 })
         },
         getLogedUser() {
@@ -107,7 +104,6 @@ export default {
             //folders
             if (this.filterBy.folder) {
                 let logedUser = mailService.getLogedUser()
-                console.log(logedUser);
                 switch (this.filterBy.folder) {
                     case 'inbox':
                         console.log('ok')

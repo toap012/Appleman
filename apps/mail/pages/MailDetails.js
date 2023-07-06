@@ -34,7 +34,7 @@ export default {
                 })
                 .catch(err => {
                     showErrorMsg('Cannot load Mail')
-                    this.$router.push('/mail')
+                    this.$router.push('/mail/inbox')
                 })
         },
         onDeleteMail() {
@@ -42,7 +42,7 @@ export default {
             mailService.save(this.mail).then(mail => {
                 console.log(mail);
                 showSuccessMsg('Mail sent to trash')
-                this.$router.push('/mail')
+                this.$router.push('/mail/inbox')
             })
             // if (confirm('Are you sure?')) {
             //     mailService.remove(mailId)
@@ -58,7 +58,7 @@ export default {
             // }
         },
         onBackToList() {
-            this.$router.push('/mail')
+            this.$router.push('/mail/inbox ')
 
         }
     },
