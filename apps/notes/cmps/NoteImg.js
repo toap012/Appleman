@@ -3,7 +3,8 @@ export default{
     props: ['info'],
     template:`
     <section class="note-img">
-<img :src="imgUrl" :title="imgTitle" :alt="imgTitle"  />
+        <!-- <p>{{imgTitle}}</p> -->
+        <img :src="imgUrl" :title="imgTitle" :alt="imgTitle"  />
     </section>
     `,
     computed:{

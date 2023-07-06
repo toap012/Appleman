@@ -9,13 +9,16 @@ export default{
     'NotePreview',
     props: ['cmp'],
     template:`
- 
+    
         <component :is="cmp.type" :info="cmp.info"
-        @changeInfo="updateNote" />
+        />
  
     `,
     created(){
         console.log(this.cmp);
+    },
+    methods: {
+
     },
     components:{
         NoteTxt,

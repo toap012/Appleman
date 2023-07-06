@@ -27,6 +27,8 @@
 
 
 /* Notes */
+@import 'apps/note/NoteActions.css';
 @import 'apps/note/NoteIndex.css';
+@import 'apps/note/NoteAdd.css';
 @import 'apps/note/NoteList.css';
 @import 'apps/note/NotePreview.css';

@@ -3,7 +3,7 @@ export default{
     props: ['info'],
     template:`
     <section class="note-text">
-        <h3>{{info.txt}}</h3>
+        <p style="white-space: pre-line;">{{ info.txt }}</p>
     </section>
     `,  
 

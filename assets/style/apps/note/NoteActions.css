@@ -1,0 +1,14 @@
+.main-actions{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.action-btn{
+    border-radius: 50%;
+padding: .15em;
+    background-color: transparent;
+    border: none;
+}
+.action-btn:hover{
+    background-color: var(--clr6);
+}
