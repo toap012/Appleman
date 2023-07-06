@@ -8,10 +8,10 @@ import NoteAdd from "../cmps/NoteAdd.js"
 export default {
     name: 'notes-index',
 	template: `
-        <section class="notes-index">
+        <section class="notes-index ">
             <h1> hello notes</h1>
-            <NoteAdd @addNote="addNewNote" :newNote="emptyNote" />
             <NoteFilter @filter="setFilterBy"/>
+            <NoteAdd @addNote="addNewNote" :newNote="emptyNote" />
             <NoteList
             v-if="notes"
             :notes="filteredNotes"
@@ -22,7 +22,7 @@ export default {
     data(){
         return{
             notes:[],
-            emptyNote:noteService.getEmptyNote() ,
+            emptyNote:null ,
             newNote:null,
             filterBy: null,
         }
@@ -38,6 +38,7 @@ export default {
     },
     created(){
         this.loadNotes()
+        // this.loadEmptyNote()
         
     },
     methods:{
@@ -56,6 +57,9 @@ export default {
                     showErrorMsg('Cannot remove note')
                 })
         },
+        loadEmptyNote(){
+            this.emptyNote = noteService.getEmptyNote()
+        },
         setFilterBy(filterBy) {
             this.filterBy = filterBy
         },
@@ -63,7 +67,10 @@ export default {
             this.newNote = newNote
             console.log(this.newNote);
             noteService.save(this.newNote)
-                .then(this.loadNotes)
+                .then(()=>{
+                    this.loadNotes()
+                    // this.loadEmptyNote()
+                })
         }
     },
 

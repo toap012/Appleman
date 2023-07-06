@@ -56,3 +56,9 @@ button {
   outline: 1px solid gold
 }
 
+textarea{
+  resize: none;
+min-width: 100%;
+border: none;
+
+}

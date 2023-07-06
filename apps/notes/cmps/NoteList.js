@@ -4,12 +4,12 @@ export default{
     name:'NoteList',
     props:['notes'],
     template:`
-    <section class="note-list">
+    <section class="note-list ">
 
         <article  v-for="(note, idx) in notes" :key="note.id">
             <NotePreview :cmp="note"/>
             <section class="actions">
-                <button @click="onRemoveNote(note.id)">x</button>
+                <button class="action-btn material-symbols-outlined" @click="onRemoveNote(note.id)">delete</button>
             </section>
         </article>
     </section>
