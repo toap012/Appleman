@@ -18,21 +18,15 @@
   position: relative;
 }
 
-.material-symbols-outlined {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48;
 
-}
-
-.material-symbols-outlined:hover {
-  background-color: white;
-  cursor: pointer;
+@keyframes about-text-animation {
+  100% {
+    transform: translate(0);
+  }
 }
 
 nav {
+  /* display: none; */
   display: grid;
   position: absolute;
   grid-template-columns: 1fr 1fr;
@@ -40,14 +34,25 @@ nav {
   height: 100px;
   top: 100%;
   right: 20%;
+  /* transform: translate(150%); */
   border-radius: 10px;
   padding: 10px;
   gap: 10px;
-  
+
 
   place-content: center;
-  
+  text-align: center;
 
-  background-color: black;
-  color: white;
+
+  background-color: rgb(248, 244, 244);
+  color: rgb(17, 17, 17);
+
 }
+
+
+
+/* icons */
+/* .material-symbols-outlined:hover {
+  box-shadow: rgba(141, 133, 133, 0.35) 0px 5px 15px;
+  cursor: pointer;
+} */

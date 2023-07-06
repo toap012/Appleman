@@ -1,0 +1,9 @@
+.mail-folders-filter{
+    display: flex;
+    flex-direction: column;
+}
+.mail-folders-filter>*:hover {
+    border-radius: 10px;
+    background-color: rgba(188, 195, 206, 0.481);
+
+}
