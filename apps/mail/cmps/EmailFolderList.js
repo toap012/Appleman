@@ -6,6 +6,7 @@ export default {
                 <span class="material-symbols-outlined">edit</span>
                 <span>Compose</span>
             </div>
+
             <div @click="onSetFilterBy('inbox')" class="folder-btn">
                 <span class="material-symbols-outlined">inbox</span>
                 <span>Inbox</span>
@@ -21,6 +22,10 @@ export default {
             <div @click="onSetFilterBy('draft')" class="folder-btn">
                 <span class="material-symbols-outlined">draft</span>
                 <span>Draft</span>
+            </div>
+            <div @click="onSetFilterBy('stars')" class="folder-btn">
+                <span class="material-symbols-outlined">star</span>
+                <span>Stars</span>
             </div>
             <div @click="onSetFilterBy('#')" class="folder-btn">
                 <span class="material-symbols-outlined">mail</span>
@@ -39,9 +44,9 @@ export default {
     methods: {
         onSetFilterBy(folder) {
             this.filterBy.folder = folder
-            setTimeout(() => {
-                this.$emit('filterByFolder', { ...this.filterBy })
-            }, 300)
+            this.$emit('filterByFolder', { ...this.filterBy })
+            // setTimeout(() => {
+            // }, 300)
         },
         newMail() {
             this.$emit('newMail')

@@ -7,10 +7,9 @@ export default {
     props: ['mails'],
     template: `
         <section class="mail-list" v-if="mails">
-           <h1> mail list</h1>
            <ul>
             <li v-for="mail in mails" :key="mail.id">
-                <MailPreview :mail="mail"/>
+                <MailPreview :mail="mail" @updateMail="updateMail" @removeMail="removeMail"/>
                 <section class="mail-actions">
                     <!-- <button @click="onRemoveMail(mail.id)">x</button> -->
                 </section>
@@ -27,7 +26,12 @@ export default {
 
     },
     methods: {
-
+        updateMail(mail){
+            this.$emit('updateMail', mail)
+        },
+        removeMail(mailId){
+            this.$emit('removeMail', mailId)
+        }
     },
     computed: {
 

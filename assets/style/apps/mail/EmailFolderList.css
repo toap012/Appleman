@@ -1,6 +1,7 @@
 .mail-folders-filter{
     display: flex;
     flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.15) 1px  0.5px;
 }
 .mail-folders-filter>*:hover {
     border-radius: 10px;

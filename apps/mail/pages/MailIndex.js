@@ -19,11 +19,11 @@ export default {
                 @close="closeWindow"/>
             <MailFilter @filter="setFilterBy"/>
             <!-- <span>unRead mails: {{unRead}}</span> -->
-            <EmailFolderList @filterByFolder="setFilterByFolder" @click="newMail"/>
+            <EmailFolderList @filterByFolder="setFilterByFolder" @newMail="newMail"/>
             <!-- <MailList
                 v-if="mails"
                 :mails="filteredMails"/> -->
-            <RouterView :mails="filteredMails" />
+            <RouterView :mails="filteredMails" @updateMail="updateMail" @removeMail="removeMail" />
         </section>
     `,
     data() {
@@ -37,11 +37,6 @@ export default {
             unRead: 0
         }
     },
-    watch: {
-        mails(){
-            this.loadMails()
-        } 
-    },
     created() {
         this.loadMails()
         this.getLogedUser()
@@ -54,6 +49,21 @@ export default {
                     this.mails = mails
                 })
         },
+        updateMail(mail) {
+            mailService.save(mail).then(updatedMail => {
+                const mailIdx = this.mails.findIndex(m => m.id === updatedMail.id)
+                this.mails.splice(mailIdx, 1, updatedMail)
+                showSuccessMsg('updated')
+            })
+        },
+        removeMail(mailId){
+            mailService.remove(mailId).then(removedMail=>{
+                const mailIdx = this.mails.findIndex(m => m.id === mailId)
+                this.mails.splice(mailIdx, 1)
+                showSuccessMsg('mail removed')
+
+            })
+        },
         getLogedUser() {
             this.logedUser = mailService.getLogedUser()
         },
@@ -61,6 +71,7 @@ export default {
             mailService.getUnreadMailsCount().then(map => this.unRead = map.unread)
         },
         setFilterBy(filterBy) {
+            // this.fitler.txt = txt
             this.filterBy = filterBy
         },
         setFilterByFolder(filter) {
@@ -76,6 +87,7 @@ export default {
                 mailService.save(mail)
                     .then(mail => {
                         showSuccessMsg('mail sent succesfuly')
+                        this.mails.push(mail)
                     })
                     .catch(err => {
                         showErrorMsg('mail could not be sent')
@@ -85,10 +97,11 @@ export default {
                 mailService.save(mail)
                     .then(draftMail => {
                         showSuccessMsg('Mail Added to Draft')
+                        this.mails.push(mail)
                     })
 
             }
-            this.loadMails()
+            // this.loadMails()
             this.newDraft = null
         },
         closeWindow() {
@@ -99,6 +112,7 @@ export default {
     computed: {
         filteredMails() {
             //filter validaition
+            if (!this.mails) return []
             if (!this.filterBy) return this.mails
             let filteredMails = this.mails
             //folders
@@ -106,20 +120,22 @@ export default {
                 let logedUser = mailService.getLogedUser()
                 switch (this.filterBy.folder) {
                     case 'inbox':
-                        console.log('ok')
-                        filteredMails = filteredMails.filter(mail => mail.to === logedUser.email)
+                        filteredMails = filteredMails.filter(mail => mail.to === logedUser.email && !mail.removedAt)
                         break;
                     case 'sent':
-                        filteredMails = filteredMails.filter(mail => mail.to !== logedUser.email && !mail.isDraft)
+                        filteredMails = filteredMails.filter(mail => mail.from === logedUser.email && !mail.isDraft)
                         break;
                     case 'trash':
                         filteredMails = filteredMails.filter(mail => mail.removedAt !== null)
                         break;
                     case 'draft':
-                        filteredMails = filteredMails.filter(mail => mail.isDraft === true)
+                        filteredMails = filteredMails.filter(mail => mail.isDraft)
+                        break;
+                    case 'stars':
+                        filteredMails = filteredMails.filter(mail => mail.isStar)
                         break;
                     case '#':
-                        filteredMails = filteredMails.filter(mail => mail.isDraft !== true && !mail.removedAt)
+                        filteredMails = filteredMails.filter(mail => !mail.isDraft && !mail.removedAt)
                 }
             }
             //filtering

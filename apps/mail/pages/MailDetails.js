@@ -27,10 +27,12 @@ export default {
             mailService.get(mailId)
                 .then(mail => {
                     this.mail = mail
-                    console.log(mail);
-                    if(this.mail.isRead)return
+                    if (this.mail.isRead) return
+                    this.$emit('updateMail', this.mail)
                     this.mail.isRead = true
-                    mailService.save(mail)
+                    mailService.save(mail).then(mail => {
+
+                    })
                 })
                 .catch(err => {
                     showErrorMsg('Cannot load Mail')
@@ -38,9 +40,16 @@ export default {
                 })
         },
         onDeleteMail() {
+            if (this.mail.removedAt) {
+                mailService.remove(this.mail.id).then(removedMail => {
+                    showSuccessMsg('mail removed')
+                    this.$router.push('/mail/inbox')
+                })
+                return
+            }
             this.mail.removedAt = Date.now()
+            this.mail.isRead = true
             mailService.save(this.mail).then(mail => {
-                console.log(mail);
                 showSuccessMsg('Mail sent to trash')
                 this.$router.push('/mail/inbox')
             })
@@ -58,7 +67,7 @@ export default {
             // }
         },
         onBackToList() {
-            this.$router.push('/mail/inbox ')
+            this.$router.push('/mail/inbox')
 
         }
     },

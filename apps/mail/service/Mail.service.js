@@ -83,6 +83,7 @@ function getEmptyMail(subject = '', body = utilService.makeLorem(50), isRead, to
         removedAt: null,
         from: 'momo@momo.com',
         to,
+        isStar: false
     }
 }
 function getLogedUser() {
