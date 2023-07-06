@@ -15,6 +15,7 @@ export const noteService = {
     get,
     remove,
     save,
+    getEmptyNote
 }
 window.noteService = noteService
 
@@ -84,7 +85,7 @@ function getEmptyNote(createdAt = new Date(),type ='NoteTxt', isPinned = false) 
      type,
      isPinned,
      style:{bgClr:'red',clr:'white'},
-     info:{txt:''}, 
+     info:{}, 
     }
 }
 
@@ -111,7 +112,7 @@ function _createNotes() {
                 info: {
                 url: 'http://unsplash.it/100/100',
                 title: 'Bobi and Me'
-                },
+                },  
                 style: {
                 backgroundColor: '#00d'
                 }

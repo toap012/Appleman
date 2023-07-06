@@ -6,7 +6,7 @@ export default{
     template:`
     <section class="note-list">
 
-        <article  v-for="(note, idx) in notes">
+        <article  v-for="(note, idx) in notes" :key="note.id">
             <NotePreview :cmp="note"/>
             <section class="actions">
                 <button @click="onRemoveNote(note.id)">x</button>
