@@ -32,11 +32,21 @@ export default {
     },
     computed: {
         filteredNotes() {
+            if (!this.notes) return []
             if (!this.filterBy) return this.notes;
+            let filteredNotes = this.notes
+
+
+            // filterBy:{
+            //     type:''
+            // }
+            if (this.filterBy.type) {
+                filteredNotes = filteredNotes.filter(note => note.type === this.filterBy.type)
+            }
             const regex = new RegExp(this.filterBy.txt, 'i');
-            return this.notes.filter(note => regex.test(note.info.txt || note.info.title || note.info.todos.filter(todo => regex.test(todo.txt))));
+            filteredNotes = filteredNotes.filter(note => regex.test(note.info.txt || note.info.title || note.info.todos.filter(todo => regex.test(todo.txt))));
 
-
+            return filteredNotes
         }
     },
     created() {
