@@ -79,7 +79,7 @@ export default {
                 },
             }
             eventBus.emit('note', note)
-            
+
         }
     },
     components: {

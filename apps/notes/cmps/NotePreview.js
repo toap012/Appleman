@@ -3,6 +3,7 @@ import NoteTxt from "./NoteTxt.js";
 import NoteImg from "./NoteImg.js";
 import NoteVideo from "./NoteVideo.js";
 import NoteTodos from "./NoteTodos.js";
+import NoteMail from "./NoteMail.js";
 
 export default{
     name:
@@ -43,6 +44,7 @@ export default{
         NoteImg,
         NoteVideo,
         NoteTodos,
+        NoteMail,
     }
 
 }

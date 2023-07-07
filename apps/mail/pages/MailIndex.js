@@ -88,6 +88,7 @@ export default {
                     .then(mail => {
                         showSuccessMsg('mail sent succesfuly')
                         this.mails.push(mail)
+                        
                     })
                     .catch(err => {
                         showErrorMsg('mail could not be sent')

@@ -5,6 +5,7 @@
     background-color: white;
     border-radius: 15px;
     border: solid black 1px;
+    z-index: 999;
 }
 
 .mail-form {

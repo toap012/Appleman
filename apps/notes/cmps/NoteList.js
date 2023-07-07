@@ -36,8 +36,8 @@ export default{
         bindNotes(){
             this.pinnedNotes = this.notes.filter(note=>note.isPinned)
             this.unPinnedNotes = this.notes.filter(note=>!note.isPinned)
-            console.log(this.pinnedNotes);
-            console.log(this.notes);
+            // console.log(this.pinnedNotes);
+            // console.log(this.notes);
             }
         },
 

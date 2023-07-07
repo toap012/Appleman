@@ -1,10 +1,10 @@
 import NoteTxtAdd from "./add-cmps/NoteTxtAdd.js"
 import NoteImgAdd from "./add-cmps/NoteImgAdd.js"
 import { eventBus } from "../../../services/event-bus.service.js"
-export default{
-    name:'NoteAdd',
-    emits:['addNote'],
-    template:`
+export default {
+    name: 'NoteAdd',
+    emits: ['addNote'],
+    template: `
     <section class="add-note">
         <component :is="type" @addNote="addNote" />
         <section class="main-actions">
@@ -14,26 +14,28 @@ export default{
         </section>
     </section>
     `,
-    data(){
-        return{
+    data() {
+        return {
             type: 'NoteTxtAdd',
-            isPinned:true
+            isPinned: true
         }
     },
-    created(){
-        eventBus.on('note',addNote)
+    created() {
+        eventBus.on('note', this.addNote)
     },
-    methods:{
-        addNote(note){
+    methods: {
+        addNote(note) {
             // const NoteToAdd = JSON.parse(JSON.stringify(this.note))
+            console.log(note);
             note.createdAt = Date.now()
             note.style = {}
             note.isPinned = this.isPinned
-            this.$emit('addNote', note)
+            const newNote = JSON.parse(JSON.stringify(note))
+            this.$emit('addNote', newNote)
             // this.$refs.noteForm.reset()
-            
+
         },
-        changeType(type){
+        changeType(type) {
             this.type = type
         }
         // calcHeight(value) {
