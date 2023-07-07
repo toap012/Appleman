@@ -22,7 +22,7 @@ export default {
                     <input type="text" name="subject" id="subject" v-model="mail.subject" placeholder="Subject"/>
                 </div>
                 <div>
-                    <textarea  name="body" id="body" v-model="mail.body" rows="" cols="50" class="body-text-area"> </textarea>
+                    <textarea  name="body" id="body" v-model="mail.body" rows="" cols="" class="body-text-area"> </textarea>
                 </div>
                 <div class="mail-form-actions-bar">
                 <div class="send"><button class="btn-send">send</button></div>

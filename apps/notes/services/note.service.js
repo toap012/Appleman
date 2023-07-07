@@ -54,14 +54,14 @@ function setFilterBy(filterBy = {}) {
 
 
 
-function getEmptyNote(createdAt = new Date(),type ='NoteTxt', isPinned = false) {
-    return { 
-     id: '',
-     createdAt,
-     type,
-     isPinned,
-     style:{bgClr:'red',clr:'white'},
-     info:{}, 
+function getEmptyNote(createdAt = new Date(), type = 'NoteTxt', isPinned = false) {
+    return {
+        id: '',
+        createdAt,
+        type,
+        isPinned,
+        style: { bgClr: 'red', clr: 'white' },
+        info: {},
     }
 }
 
@@ -75,43 +75,43 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
-                backgroundColor: '#00d'
+                    backgroundColor: '#00d'
                 },
                 info: {
-                txt: 'Fullstack Me Baby!'
+                    txt: 'Fullstack Me Baby!'
                 }
-                },
-                {
+            },
+            {
                 id: 'n102',
                 type: 'NoteImg',
                 isPinned: false,
                 info: {
-                url: 'http://unsplash.it/100/100',
-                title: 'Bobi and Me'
-                },  
-                style: {
-                backgroundColor: '#00d'
-                }
+                    url: 'http://unsplash.it/100/100',
+                    title: 'Bobi and Me'
                 },
-                {
+                style: {
+                    backgroundColor: '#00d'
+                }
+            },
+            {
                 id: 'n103',
                 type: 'NoteTodos',
                 isPinned: false,
                 info: {
-                title: 'Get my stuff together',
-                todos: [
-                { txt: 'Driving license', doneAt: null },
-                { txt: 'Coding power', doneAt: 187111111 }
-                ]
+                    title: 'Get my stuff together',
+                    todos: [
+                        { txt: 'Driving license', doneAt: null },
+                        { txt: 'Coding power', doneAt: 187111111 }
+                    ]
                 }
-                }
+            }
         ]
 
         utilService.saveToStorage(NOTE_KEY, notes)
     }
 }
 
-function _createNote(createdAt,info,type,isPinned) {
+function _createNote(createdAt, info, type, isPinned) {
     const note = getEmptyNote()
     note.id = utilService.makeId()
     note.info = info

@@ -1,5 +1,5 @@
 import { mailService } from "../service/Mail.service.js"
-import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
+import { showSuccessMsg, showErrorMsg, eventBus } from '../../../services/event-bus.service.js'
 
 export default {
     name: 'mail-details',
@@ -11,6 +11,7 @@ export default {
         <p>{{mail.body}}</p>
         <button @click="onDeleteMail">Delete Mail</button>
         <button @click="onBackToList">Back to List</button>
+        <button @click="onSaveNote">Save as a note</button>
 </section>
 `,
     data() {
@@ -69,6 +70,16 @@ export default {
         onBackToList() {
             this.$router.push('/mail/inbox')
 
+        },
+        onSaveNote() {
+            const note = {
+                type: 'noteMail',
+                info: {
+                    mail: this.mail
+                },
+            }
+            eventBus.emit('note', note)
+            
         }
     },
     components: {
