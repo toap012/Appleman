@@ -76,6 +76,7 @@ export default {
             noteService.save(this.newNote)
                 .then(()=>{
                     this.loadNotes()
+                    console.log(this.newNote)
                 
                 })
         }
