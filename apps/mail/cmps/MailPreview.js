@@ -11,19 +11,20 @@ export default {
                 <span class="from">from:{{mail.from}}</span>
                 <span class="subject">{{mail.subject}}</span>
                 <span class="body-prev">{{mail.body}}</span>
+                <span class="date">{{mailDate}}</span>
                 <!-- <RouterLink :to="'/mail/edit/' + mail.id">Edit</RouterLink> -->
+                <div class="preview-icons">
+                    <span  @click.stop="handleRemove">
+        
+                        <span  class="material-symbols-outlined">delete</span>
+                    </span>
+                    <span @click.stop="toogleRead">
+        
+                        <span  class="material-symbols-outlined" >{{isReadIcon}}</span>
+                    </span>
+                </div>
             </article>
         </RouterLink> 
-        <div class="preview-icons">
-            <span  @click.stop="handleRemove">
-
-                <span  class="material-symbols-outlined">delete</span>
-            </span>
-            <span @click.stop="toogleRead">
-
-                <span  class="material-symbols-outlined" >{{isReadIcon}}</span>
-            </span>
-        </div>
     </article>
     `,
     data() {
@@ -31,7 +32,11 @@ export default {
             // isReadIcon: '',
             // isReadClass: ''
             // isMailRead: this.mail.isRead
+            mailDate: null
         }
+    },
+    created() {
+        this.getDate()
     },
     methods: {
         toogleRead() {
@@ -39,7 +44,7 @@ export default {
             mailToUpdate.isRead = !mailToUpdate.isRead
             this.$emit('updateMail', mailToUpdate)
         },
-        toggleStar(){
+        toggleStar() {
             const mailToUpdate = JSON.parse(JSON.stringify(this.mail))
             mailToUpdate.isStar = !mailToUpdate.isStar
             this.$emit('updateMail', mailToUpdate)
@@ -53,6 +58,11 @@ export default {
                 this.$emit('updateMail', mailToUpdate)
             }
         },
+        getDate() {
+            const mailDate = new Date(this.mail.sentAt)
+            const options = { day: 'numeric', month: 'long' }
+            this.mailDate = mailDate.toLocaleDateString('en-US', options)
+        }
 
     },
     computed: {

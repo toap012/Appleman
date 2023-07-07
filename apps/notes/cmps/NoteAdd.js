@@ -13,25 +13,27 @@ export default{
         </section>
     </section>
     `,
-    data(){
-        return{
+    data() {
+        return {
             type: 'NoteTxtAdd',
-            isPinned:true
+            isPinned: true
         }
     },
-    created(){
-
+    created() {
+        eventBus.on('note', this.addNote)
     },
     methods:{
         addNote(note){
+            // const NoteToAdd = JSON.parse(JSON.stringify(this.note))
             note.createdAt = Date.now()
             note.style = {}
             note.isPinned = this.isPinned
-            this.$emit('addNote', note)
+            const newNote = JSON.parse(JSON.stringify(note))
+            this.$emit('addNote', newNote)
             // this.$refs.noteForm.reset()
-            
+
         },
-        changeType(type){
+        changeType(type) {
             this.type = type
         }
     },
