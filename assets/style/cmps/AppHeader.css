@@ -4,12 +4,19 @@
   justify-content: space-between;
   /* background-color: var(--clr5); */
   color: var(--secondary-clr1);
- padding: var(--mainPadding);
+  padding: var(--mainPadding);
 
-  box-shadow: 0 1px 6px 0 rgba(32,33,36,.28);
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 }
-.menu-btn{
+
+.menu-btn {
   color: var(--clr4);
+  cursor: pointer;
+}
+
+.menu-btn:hover {
+  scale: 1.1;
+
 }
 
 @media(max-width: 720px) {
@@ -54,9 +61,15 @@ nav {
 
 }
 
-.logo{
+nav>*:hover {
+  scale: 1.1;
+}
+
+.logo {
   margin-inline-end: 5rem;
   scale: 2;
 }
 
-
+.hide {
+  display: none;
+}

@@ -17,46 +17,82 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-inline: 10px;
+    margin-inline: 0.8rem;
+
 
     gap: 10px;
 }
-.mail-form>* div{
+
+.mail-form>* div {
     display: grid;
     width: 70px;
 }
-.mail-form>* input{
-    width: 100%;
-}
 
-.close-form-btn{
-    position: absolute;
-    background: none;
-    border: none;
-    color: inherit;
-    top: 5px;
-    left: 5px;
-    border-radius: 50%;
-}
-.close-form-btn:hover{
-    box-shadow: 0 2px 1px 1px rgba(64, 60, 67, .16);
-}
-
-.form-header{
-    height: 10px;
+.form-header {
+    margin-inline: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f1eeee;
+    height: 20px;
     text-align: center;
     font: inherit;
     font-size: 20px;
+    border-radius: 15px;
+
 }
 
-.mail-form button{
+.form-header-actions {
+    display: flex;
+    justify-content: space-between;
+    min-width: 60px;
+}
+
+.form-header-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50%;
+    font-size: 1rem;
+}
+
+.mail-form>* input {
+    width: 100%;
+    height: 30px;
+}
+
+.body-text-area {
+    height: 300px;
+    border: solid rgb(122, 118, 118) 1px;
+
+}
+
+.form-header-btn:hover {
+    box-shadow: 0 2px 1px 1px rgba(64, 60, 67, .16);
+}
+
+
+
+.mail-form button {
     background: none;
     border: none;
 }
 
-.btn-send{
+.mail-form-actions-bar>* {
     color: var(--clr4);
 }
-.btn-send:hover{
+
+.send {
+    background-color: rgb(52, 94, 232);
+    border-radius: 50px;
+    height: 30px;
+}
+
+.btn-send {
+    color: var(--clr1);
+}
+
+.btn-send:hover {
     scale: 1.1;
 }
