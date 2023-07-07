@@ -2,7 +2,9 @@
     display: flex;
     justify-content: space-evenly;
 }
-
+.actions{
+    background-color: var(--clr6);
+}
 .action-btn{
     border-radius: 50%;
     padding: .15em;
@@ -10,5 +12,5 @@
     border: none;
 }
 .action-btn:hover{
-    background-color: var(--clr6);
+    background-color: var(--clr7);
 }
