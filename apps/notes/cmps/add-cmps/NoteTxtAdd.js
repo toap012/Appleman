@@ -2,14 +2,14 @@ export default{
     name:'NoteTxtAdd',
     // props: ['info'],
     template:`
-    <section class="note-txt-add">
-        <form   @submit.prevent="addNote" class="add-note" >
+
+        <form   @submit.prevent="addNote" class="note-txt-add" >
             <textarea v-model="note.info.txt" type="text" placeholder="Write a note..."></textarea>
     
             <button class="action-btn save-btn material-symbols-outlined">save</button>
         </form>
         
-    </section>
+
     `,
     data(){
         return {

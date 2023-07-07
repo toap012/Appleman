@@ -60,7 +60,6 @@ button {
 
 textarea{
   resize: none;
-min-width: 100%;
-border: none;
-
+  border: none;
+  outline: 0;
 }

@@ -1,5 +1,5 @@
 import { noteService } from "../services/note.service.js"
-
+import { eventBus } from "../../../services/event-bus.service.js"
 
 import NoteFilter from "../cmps/NoteFilter.js"
 import NoteList from "../cmps/NoteList.js"
@@ -15,7 +15,6 @@ export default {
             <NoteList
             v-if="notes"
             :notes="filteredNotes"
-            @remove="removeNote"
             />
         </section>
     `,
@@ -38,10 +37,18 @@ export default {
     },
     created(){
         this.loadNotes()
-        // this.loadEmptyNote()
+        eventBus.on('remove',this.removeNote)
+        eventBus.on('TogglePin',this.TogglePin)        // this.loadEmptyNote()
         
     },
     methods:{
+        TogglePin(note){
+            note.isPinned=!note.isPinned
+            noteService.save(note)
+                .then(()=>{
+
+                })
+        },
         loadNotes(){
             noteService.query()
             .then(notes=>this.notes = notes)
@@ -69,7 +76,7 @@ export default {
             noteService.save(this.newNote)
                 .then(()=>{
                     this.loadNotes()
-                    // this.loadEmptyNote()
+                
                 })
         }
     },

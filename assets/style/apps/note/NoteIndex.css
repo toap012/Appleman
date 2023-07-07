@@ -1,0 +1,7 @@
+.notes-index button{
+    color: var(--clr7);
+}
+.notes-index button:hover{
+    color: var(--clr8);
+    opacity: .75;
+}

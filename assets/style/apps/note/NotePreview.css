@@ -1,6 +1,8 @@
 .note-list article{
+    position: relative;
     display: flex;
     flex-direction: column;
+    /* justify-content: center; */
     break-inside: avoid;
     padding: .3em;
     margin-block-end: 1em;
@@ -8,14 +10,24 @@
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     transition: box-shadow .3s linear ;
 }
+.trns-effect{
+opacity: 0;
+transition: opacity .3s;
+}
+.note-list article:hover .trns-effect{
+    opacity: 1;
+}
+.pin-btn-container{
+align-self: start;    
+}
+.pin-btn.pinned{
+font-weight: 600;
+}
+
 .note-list article:hover{
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 6px 7px;
 }
-.note-list article .actions{
-    opacity: 0;
-    transition: opacity .3s linear ;
 
-}
-.note-list article .actions:hover{
-    opacity: 1;
+.note-img{
+    align-self: center;
 }

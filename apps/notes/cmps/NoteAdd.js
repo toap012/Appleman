@@ -2,7 +2,6 @@ import NoteTxtAdd from "./add-cmps/NoteTxtAdd.js"
 import NoteImgAdd from "./add-cmps/NoteImgAdd.js"
 export default{
     name:'NoteAdd',
-    props:['newNote'],
     emits:['addNote'],
     template:`
     <section class="add-note">
@@ -13,17 +12,15 @@ export default{
             <button class="action-btn material-symbols-outlined" title="Todo-button" @click="changeType('NoteTodoAdd')">checklist</button>
         </section>
     </section>
-    <pre>{{note}}</pre>
     `,
     data(){
         return{
-            note: null, 
             type: 'NoteTxtAdd',
-            isPinned:false
+            isPinned:true
         }
     },
     created(){
-        this.note = JSON.parse(JSON.stringify(this.newNote))
+
     },
     methods:{
         addNote(note){
