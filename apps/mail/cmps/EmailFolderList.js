@@ -1,5 +1,6 @@
 export default {
     name: 'mail-folders-filter',
+    emits:['filterByFolder','newMail'],
     template: `
         <div class="folder-menu material-symbols-outlined" @click="toggleMenu">menu</div>
         <section class="mail-folders-filter hide" :class="isShown" @click="toggleMenu">

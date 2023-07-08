@@ -149,7 +149,7 @@ export default {
             }
 
             if (this.filterBy.isRead && this.filterBy.isRead !== 'all') {
-                console.log(this.filterBy.isRead);
+                // console.log(this.filterBy.isRead);
                 if (this.filterBy.isRead === 'true') {
                     filteredMails = filteredMails.filter(mail => mail.isRead === true)
                 } else {

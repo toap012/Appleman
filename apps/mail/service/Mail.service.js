@@ -165,7 +165,7 @@ function _createMail(subject, isRead, to, body = utilService.makeLorem(5)) {
     const mail = getEmptyMail(subject, body, isRead, to)
     mail.id = utilService.makeId()
     mail.sentAt = Date.now()
-    console.log(mail);
+    // console.log(mail);
     return mail
 }
 
