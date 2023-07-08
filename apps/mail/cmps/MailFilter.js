@@ -15,9 +15,9 @@ export default {
         </div>
                 
                 
-                <input type="radio" value="all"  v-model="filterBy.isRead" @input="onSetFilterBy"/>All
-                <input type="radio" value="true"  v-model="filterBy.isRead" @input="onSetFilterBy"/>Read
-                <input type="radio" value="false"  v-model="filterBy.isRead" @input="onSetFilterBy"/>Unread 
+                <div>All<input type="radio" value="all"  v-model="filterBy.isRead" @input="onSetFilterBy"/></div>
+                <div>Read<input type="radio" value="true"  v-model="filterBy.isRead" @input="onSetFilterBy"/></div>
+                <div>Unread <input type="radio" value="false"  v-model="filterBy.isRead" @input="onSetFilterBy"/></div>
         </section>
     `,
     data() {

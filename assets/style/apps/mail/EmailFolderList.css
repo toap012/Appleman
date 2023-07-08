@@ -8,3 +8,27 @@
     background-color: rgba(188, 195, 206, 0.481);
 
 }
+.folder-menu{
+    display: none;
+    position: fixed;
+    top: 100px;
+    left: 5px;
+}
+
+@media(max-width: 720px) {
+    .mail-folders-filter{
+        position: absolute;
+        top: 110px;
+        z-index: 111;
+        background-color: var(--clr1);
+    }
+    .folder-menu{
+        display: block;
+    }
+    .hide{
+        display: none;
+    }
+    .show-folders{
+        display: flex;
+    }
+}

@@ -1,7 +1,8 @@
 export default {
     name: 'mail-folders-filter',
     template: `
-        <section class="mail-folders-filter">
+        <div class="folder-menu material-symbols-outlined" @click="toggleMenu">menu</div>
+        <section class="mail-folders-filter hide" :class="isShown" @click="toggleMenu">
             <div @click="newMail" class="folder-btn new-mail-btn">
                 <span class="material-symbols-outlined">edit</span>
                 <span>Compose</span>
@@ -38,7 +39,8 @@ export default {
         return {
             filterBy: {
                 folder: '#'
-            }
+            },
+            isShown: ''
         }
     },
     methods: {
@@ -50,6 +52,10 @@ export default {
         },
         newMail() {
             this.$emit('newMail')
+
+        },
+        toggleMenu() {
+            this.isShown = this.isShown ? '' : 'show-folders'
 
         }
     }

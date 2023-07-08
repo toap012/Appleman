@@ -7,8 +7,8 @@
     /* color: #202124; */
     /* background: #cadcf4; */
     height: 50px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    /* padding-bottom: 10px; */
+    /* padding-top: 10px; */
 }
 
 .mail-preview {
@@ -99,24 +99,60 @@
         white-space: nowrap;
         overflow-x: hidden;
         text-overflow: ellipsis;
+        height: 70px;
     }
 
     .mail-preview {
-
-        gap: 5rem;
-
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        justify-content: start;
+        height: fit-content;
+        /* min-width: 80vw; */
     }
 
     .mail-preview>* {
-        width: 100%;
+        width: auto;
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
     }
 
-    .preview-icons>* {
-        display: none;
-
+    .from {
+        grid-row: 2;
+        white-space: normal;
+        overflow-x: visible;
+        width: fit-content;
+        font-size: small;
     }
 
     .body-prev {
         display: none;
     }
+
+    .date {
+        grid-row: 1;
+        grid-column: 2;
+    }
+    
+    .preview-icons {
+        opacity: 1;
+        display: flex;
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: end;
+    }
+
+    .mail-row:hover .preview-icons {
+        display: flex;
+        grid-row: 1/-1;
+        justify-self: end;
+    } 
 }
+/* 
+    .mail-row:hover .date {
+        display: none;
+    }
+
+
+*/
