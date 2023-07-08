@@ -1,5 +1,6 @@
 import NoteTxtAdd from "./add-cmps/NoteTxtAdd.js"
 import NoteImgAdd from "./add-cmps/NoteImgAdd.js"
+
 import { eventBus } from "../../../services/event-bus.service.js"
 export default {
     name: 'NoteAdd',

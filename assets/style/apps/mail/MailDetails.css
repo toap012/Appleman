@@ -1,0 +1,24 @@
+.mail-details {
+    position: relative;
+    padding: 10px;
+}
+
+.mail-body {
+    min-height: 50vh;
+}
+
+.mail-details-action-bar {
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--clr4);
+    
+}
+
+
+.btn {
+    background: none;
+    border: none;
+    color: var(--clr4);
+}

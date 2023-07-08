@@ -21,7 +21,7 @@
 
 @media(max-width: 720px) {
   .app-header {
-    background-color: var(--clr3);
+    /* background-color: var(--clr3); */
     color: var(--secondary-clr2);
   }
 }
@@ -66,7 +66,7 @@ nav>*:hover {
 }
 
 .logo {
-  margin-inline-end: 5rem;
+  margin-inline-end: 3rem;
   scale: 2;
 }
 

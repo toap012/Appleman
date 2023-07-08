@@ -6,12 +6,16 @@ export default {
     template: `
     <section class="mail-details" v-if="mail">
         <!-- <LongText :text="book.description"></LongText> -->
+        <section class="mail-details-action-bar">
+            <button @click="onBackToList"  class="material-symbols-outlined back btn" title="back to list">arrow_back</button>
+            <div>
+                <button @click="onDeleteMail" class="material-symbols-outlined btn" title="delete">delete</button>
+                <button @click="onSaveNote" class="material-symbols-outlined btn" title="save as note">note</button>
+            </div>
+        </section>
+        <h2>{{mail.subject}}</h2>
         <h3>from:{{mail.from}}</h3>
-        <h3>{{mail.subject}}</h3>
-        <p>{{mail.body}}</p>
-        <button @click="onDeleteMail">Delete Mail</button>
-        <button @click="onBackToList">Back to List</button>
-        <button @click="onSaveNote">Save as a note</button>
+        <p class="mail-body">{{mail.body}}</p>
 </section>
 `,
     data() {
