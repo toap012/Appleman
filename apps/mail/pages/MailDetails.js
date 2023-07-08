@@ -20,7 +20,8 @@ export default {
 `,
     data() {
         return {
-            mail: null
+            mail: null,
+            // isNotDraft: null
         }
     },
     created() {
@@ -36,6 +37,9 @@ export default {
                     this.$emit('updateMail', this.mail)
                     this.mail.isRead = true
                     mailService.save(mail).then(mail => {
+                        // this.isNotDraft = this.mail.sentAt ? true : false
+                        // if(!this.isNotDraft) this.handleDraft(mail)
+                                                   
 
                     })
                 })
@@ -43,7 +47,11 @@ export default {
                     showErrorMsg('Cannot load Mail')
                     this.$router.push('/mail/inbox')
                 })
-        },
+            },
+        //     handleDraft(mail) {
+        //         this.$router.push('/mail/inbox')
+        //         eventBus.emit('editDraft', mail)
+        // },
         onDeleteMail() {
             if (this.mail.removedAt) {
                 mailService.remove(this.mail.id).then(removedMail => {

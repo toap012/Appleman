@@ -1,5 +1,5 @@
 import { mailService } from "../service/Mail.service.js"
-import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
+import { showSuccessMsg, showErrorMsg, eventBus } from '../../../services/event-bus.service.js'
 
 import MailList from '../cmps/MailList.js'
 import MailFilter from '../cmps/MailFilter.js'
@@ -41,6 +41,7 @@ export default {
         this.loadMails()
         this.getLogedUser()
         this.getUnreadMailsCount()
+        // eventBus.on('editDraft', this.newMail)
     },
     methods: {
         loadMails() {
@@ -56,8 +57,8 @@ export default {
                 showSuccessMsg('updated')
             })
         },
-        removeMail(mailId){
-            mailService.remove(mailId).then(removedMail=>{
+        removeMail(mailId) {
+            mailService.remove(mailId).then(removedMail => {
                 const mailIdx = this.mails.findIndex(m => m.id === mailId)
                 this.mails.splice(mailIdx, 1)
                 showSuccessMsg('mail removed')
@@ -77,7 +78,8 @@ export default {
         setFilterByFolder(filter) {
             this.filterBy.folder = filter.folder
         },
-        newMail() {
+        newMail(draftMail) {
+            if (draftMail) return this.newDraft = draftMail
             this.newDraft = mailService.getEmptyMail()
         },
         sendMail(mail, isSend) {
@@ -88,7 +90,7 @@ export default {
                     .then(mail => {
                         showSuccessMsg('mail sent succesfuly')
                         this.mails.push(mail)
-                        
+
                     })
                     .catch(err => {
                         showErrorMsg('mail could not be sent')
@@ -107,7 +109,7 @@ export default {
         },
         closeWindow() {
             this.newDraft = null
-        }
+        },
 
     },
     computed: {
