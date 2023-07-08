@@ -9,7 +9,6 @@ export default{
     `,
     computed:{
         imgUrl(){
-            console.log(this.info.url)
             return this.info.url
         },
         imgTitle(){

@@ -1,3 +1,8 @@
+.notes-index{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
 .notes-index button{
     color: var(--clr7);
 }
