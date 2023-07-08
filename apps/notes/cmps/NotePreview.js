@@ -10,14 +10,16 @@ export default{
     'NotePreview',
     props: ['cmp'],
     template:`
+<section class="note-preview">
 
-<div  class="trns-effect pin-btn-container" @click="onTogglePin(cmp)">
-    <div :class="addClass" class="tst">
-        <button :class="addClass" class="pin-btn action-btn material-symbols-outlined">push_pin</button>
+    <div  class="trns-effect pin-btn-container" @click="onTogglePin(cmp)">
+        <div :class="addClass" class="tst">
+            <button :class="addClass" class="pin-btn action-btn material-symbols-outlined">push_pin</button>
+        </div>
     </div>
-</div>
-<component :is="cmp.type" :info="cmp.info"
-/>
+    <component :is="cmp.type" :info="cmp.info"
+    />
+</section>
 <section class="trns-effect actions">
     <button class=" action-btn material-symbols-outlined" @click="onRemove(cmp.id)">delete</button>
 </section>

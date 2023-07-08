@@ -1,9 +1,10 @@
 import NoteTxtAdd from "./add-cmps/NoteTxtAdd.js"
 import NoteImgAdd from "./add-cmps/NoteImgAdd.js"
-export default{
-    name:'NoteAdd',
-    emits:['addNote'],
-    template:`
+import { eventBus } from "../../../services/event-bus.service.js"
+export default {
+    name: 'NoteAdd',
+    emits: ['addNote'],
+    template: `
     <section class="add-note">
         <component :is="type" @addNote="addNote" />
         <section class="main-actions">
@@ -22,9 +23,10 @@ export default{
     created() {
         eventBus.on('note', this.addNote)
     },
-    methods:{
-        addNote(note){
+    methods: {
+        addNote(note) {
             // const NoteToAdd = JSON.parse(JSON.stringify(this.note))
+            console.log(note);
             note.createdAt = Date.now()
             note.style = {}
             note.isPinned = this.isPinned
@@ -36,16 +38,15 @@ export default{
         changeType(type) {
             this.type = type
         }
-    },
-    components: {
-        NoteTxtAdd,
-        NoteImgAdd
-    }
-}
-// const NoteToAdd = JSON.parse(JSON.stringify(this.note))
         // calcHeight(value) {
         //     let numberOfLineBreaks = (value.match(/\n/g) || []).length;
         //     // min-height + lines x line-height + padding + border
         //     let newHeight = 20 + numberOfLineBreaks * 20 + 12 + 2;
         //     return newHeight;
         //   },
+    },
+    components: {
+        NoteTxtAdd,
+        NoteImgAdd
+    }
+}
