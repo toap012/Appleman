@@ -1,9 +1,11 @@
 import NoteTxtAdd from "./add-cmps/NoteTxtAdd.js"
 import NoteImgAdd from "./add-cmps/NoteImgAdd.js"
-export default{
-    name:'NoteAdd',
-    emits:['addNote'],
-    template:`
+
+import { eventBus } from "../../../services/event-bus.service.js"
+export default {
+    name: 'NoteAdd',
+    emits: ['addNote'],
+    template: `
     <section class="add-note">
         <component :is="type" @addNote="addNote" />
         <section class="main-actions">
@@ -22,8 +24,8 @@ export default{
     created() {
         eventBus.on('note', this.addNote)
     },
-    methods:{
-        addNote(note){
+    methods: {
+        addNote(note) {
             // const NoteToAdd = JSON.parse(JSON.stringify(this.note))
             note.createdAt = Date.now()
             note.style = {}
