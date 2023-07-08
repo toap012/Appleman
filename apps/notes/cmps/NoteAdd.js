@@ -18,7 +18,7 @@ export default {
     data() {
         return {
             type: 'NoteTxtAdd',
-            isPinned: true
+            isPinned: false
         }
     },
     created() {
@@ -27,8 +27,9 @@ export default {
     methods: {
         addNote(note) {
             // const NoteToAdd = JSON.parse(JSON.stringify(this.note))
+            console.log(note);
             note.createdAt = Date.now()
-            note.style = {}
+            note.style = {backgroundColor:''}
             note.isPinned = this.isPinned
             const newNote = JSON.parse(JSON.stringify(note))
             this.$emit('addNote', newNote)
@@ -38,16 +39,15 @@ export default {
         changeType(type) {
             this.type = type
         }
-    },
-    components: {
-        NoteTxtAdd,
-        NoteImgAdd
-    }
-}
-// const NoteToAdd = JSON.parse(JSON.stringify(this.note))
         // calcHeight(value) {
         //     let numberOfLineBreaks = (value.match(/\n/g) || []).length;
         //     // min-height + lines x line-height + padding + border
         //     let newHeight = 20 + numberOfLineBreaks * 20 + 12 + 2;
         //     return newHeight;
         //   },
+    },
+    components: {
+        NoteTxtAdd,
+        NoteImgAdd
+    }
+}

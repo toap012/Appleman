@@ -53,9 +53,15 @@ export default {
         this.loadNotes()
         eventBus.on('remove', this.removeNote)
         eventBus.on('TogglePin', this.TogglePin)        // this.loadEmptyNote()
-
+        eventBus.on('saveNote',this.saveNote)
     },
     methods: {
+        saveNote(note){
+            noteService.save(note)
+                .then(()=>{
+                    showSuccessMsg('note was successfully saved')
+                })
+        },
         TogglePin(note) {
             note.isPinned = !note.isPinned
             noteService.save(note)

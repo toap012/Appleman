@@ -3,6 +3,7 @@
     justify-content: space-evenly;
 }
 .actions{
+    position: relative;
     background-color: var(--clr6);
 }
 .action-btn{

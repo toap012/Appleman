@@ -4,17 +4,20 @@ export default{
     name:'NoteList',
     props:['notes'],
     template:`
-    <section :notes="bindNotes" v-if="notes" class="note-list ">
-        <article  v-for="(note) in pinnedNotes"  :key="note.id">
-                <NotePreview  :cmp="note"/>
+    <TransitionGroup name="list" tag="section">
 
-        </article>
-    </section>
-    <section :notes="bindNotes" v-if="notes" class="note-list ">
-        <article  v-for="(note) in unPinnedNotes"  :key="note.id">
+        <TransitionGroup :notes="bindNotes" v-if="notes" class="note-list" name="list" tag="section">
+            <article  v-for="(note) in pinnedNotes"  :key="note.id">
                 <NotePreview  :cmp="note"/>
-        </article>
-</section>
+            </article>
+        </TransitionGroup>
+
+        <TransitionGroup :notes="bindNotes" v-if="notes" class="note-list" name="list" tag="section">
+            <article  v-for="(note) in unPinnedNotes"  :key="note.id">
+                <NotePreview  :cmp="note"/>
+            </article>
+        </TransitionGroup>
+    </TransitionGroup>
     
     `,
     data(){
@@ -36,8 +39,6 @@ export default{
         bindNotes(){
             this.pinnedNotes = this.notes.filter(note=>note.isPinned)
             this.unPinnedNotes = this.notes.filter(note=>!note.isPinned)
-            // console.log(this.pinnedNotes);
-            // console.log(this.notes);
             }
         },
 
