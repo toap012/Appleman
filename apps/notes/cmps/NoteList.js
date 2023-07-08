@@ -6,13 +6,13 @@ export default{
     template:`
     <TransitionGroup name="list" tag="section">
 
-        <TransitionGroup :notes="bindNotes" v-if="notes" class="note-list" name="note" tag="section">
+        <TransitionGroup :notes="bindNotes" v-if="notes" class="note-list" name="list" tag="section">
             <article  v-for="(note) in pinnedNotes"  :key="note.id">
                 <NotePreview  :cmp="note"/>
             </article>
         </TransitionGroup>
 
-        <TransitionGroup :notes="bindNotes" v-if="notes" class="note-list" name="note" tag="section">
+        <TransitionGroup :notes="bindNotes" v-if="notes" class="note-list" name="list" tag="section">
             <article  v-for="(note) in unPinnedNotes"  :key="note.id">
                 <NotePreview  :cmp="note"/>
             </article>

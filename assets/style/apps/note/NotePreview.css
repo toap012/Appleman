@@ -1,6 +1,7 @@
 .note-list article {
     display: flex;
     max-width: 240px;
+    min-width: 210px;
     flex-direction: column;
     break-inside: avoid;
     margin-block-end: 1em;
@@ -44,4 +45,26 @@ align-self: start;
 
 .note-img{
     align-self: center;
+}
+.palette-options{
+    position: absolute;
+    display: flex;    
+    justify-content: space-evenly;
+    border-radius: 1em;
+    padding: .5em;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 3px, rgba(0, 0, 0, 0.08) 0px 0px 0px 3px;
+    width: 300px;
+    height: 50px;
+    top: 2.8125em;
+    left: -1.7em;
+}
+.palette-option{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.palette-option:hover{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 3px, rgba(0, 0, 0, 0.08) 0px 0px 0px 2px;
 }

@@ -10,7 +10,7 @@ export default{
     'NotePreview',
     props: ['cmp'],
     template:`
-<section class="note-preview">
+<section class="note-preview" v-if="cmp" :style="changeBgClr">
 
     <div  class="trns-effect pin-btn-container" @click="onTogglePin(cmp)">
         <div :class="addClass" class="tst">
@@ -20,10 +20,21 @@ export default{
     <component :is="cmp.type" :info="cmp.info"
     />
 </section>
-<section class="trns-effect actions">
+<section class="trns-effect actions" >
     <button class=" action-btn material-symbols-outlined" @click="onRemove(cmp.id)">delete</button>
+    <button class=" action-btn material-symbols-outlined" @click="onOpenPalette">palette</button>
+    <section v-if="isPalette" class="palette-options">
+        <div class="palette-option" v-for="paletteOption in paletteOptions" @click="onSetBgClr(paletteOption,cmp)" :style="{backgroundColor:paletteOption}" >
+        </div>
+    </section>
 </section>
     `,
+    data(){
+        return{
+            isPalette:false,
+            paletteOptions:['#ff6633','#ccffcc','#ffffcc','#eeeeee','#8dff76','#a9ffc6','#72dbff','#fdff46'],
+        }
+    },
     created(){
     },
     methods: {
@@ -32,6 +43,16 @@ export default{
         },
         onTogglePin(note){
             eventBus.emit('TogglePin', note)
+        },
+        onOpenPalette(){
+            this.isPalette = !this.isPalette
+        },
+        onSetBgClr(clr,note){
+            this.cmp.style.backgroundColor = clr
+            // const newNote = JSON.parse(JSON.stringify(note))
+            eventBus.emit('setBgClr',note)
+            this.isPalette = false
+
         }
     },
     computed:{
@@ -39,7 +60,11 @@ export default{
             return{ 
                 pinned: this.cmp.isPinned
             }
-         }
+         },
+         changeBgClr(){
+            return {backgroundColor:this.cmp.style.backgroundColor}
+            
+         },
     },
     components:{
         NoteTxt,

@@ -7,6 +7,15 @@
     max-width: 600px;
 
 }
+.note-img-add input{
+    border: none;
+    outline: 0;
+}
+.note-img-add form{
+    border-radius:0 ;
+    box-shadow: none;
+  
+}
 .note-txt-add{
 display: flex;
 flex-direction: column;

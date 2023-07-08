@@ -21,20 +21,3 @@ padding: 1em;
 .list-leave-active {
   position: absolute;
 }
-.note-move, /* apply transition to moving elements */
-.note-enter-active,
-.note-leave-active {
-  transition: all 1s ease;
-}
-
-.note-enter-from,
-.note-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-/* ensure leaving items are taken out of layout flow so that moving
-   animations can be calculated correctly. */
-.note-leave-active {
-  position: absolute;
-}

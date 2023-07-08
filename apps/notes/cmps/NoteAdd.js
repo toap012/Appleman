@@ -18,7 +18,7 @@ export default {
     data() {
         return {
             type: 'NoteTxtAdd',
-            isPinned: true
+            isPinned: false
         }
     },
     created() {
@@ -29,7 +29,7 @@ export default {
             // const NoteToAdd = JSON.parse(JSON.stringify(this.note))
             console.log(note);
             note.createdAt = Date.now()
-            note.style = {}
+            note.style = {backgroundColor:''}
             note.isPinned = this.isPinned
             const newNote = JSON.parse(JSON.stringify(note))
             this.$emit('addNote', newNote)
