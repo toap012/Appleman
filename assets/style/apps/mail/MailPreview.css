@@ -13,7 +13,7 @@
 
 .mail-preview {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     height: 50px;
 
@@ -24,7 +24,8 @@
 }
 
 .mail-preview>* {
-    width: 12.5rem;
+    min-width: 12.5rem;
+    /* min-width: 9rem; */
 }
 
 .checkbox {
@@ -39,9 +40,13 @@
 
 .date {
     text-align: end;
+    width: 10px;
 }
 
 .preview-icons {
+    position: absolute;
+    right: 2vw;
+    text-align: start;
     display: flex;
     gap: 10px;
     opacity: 0;
@@ -86,11 +91,12 @@
 
 
 .body-prev {
-    min-width: 12.5rem;
+    width: 10vw;
     white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;
     font-weight: 400;
+    font-size: 13px;
 }
 
 
@@ -133,26 +139,29 @@
     .date {
         grid-row: 1;
         grid-column: 2;
+        text-align: start;
     }
-    
+
     .preview-icons {
         opacity: 1;
         display: flex;
         grid-column: 2;
         grid-row: 2;
-        justify-self: end;
+        bottom: 0;
     }
 
     .mail-row:hover .preview-icons {
         display: flex;
         grid-row: 1/-1;
         justify-self: end;
-    } 
-}
-/* 
-    .mail-row:hover .date {
-        display: none;
     }
+    .mail-row:hover .date {
+        opacity: 1;
+    }
+}
+
+/* 
+   
 
 
 */

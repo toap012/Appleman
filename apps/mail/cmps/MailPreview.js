@@ -13,18 +13,18 @@ export default {
                 <span class="body-prev">{{mail.body}}</span>
                 <span class="date">{{mailDate}}</span>
                 <!-- <RouterLink :to="'/mail/edit/' + mail.id">Edit</RouterLink> -->
+            </article>
+            </RouterLink> 
                 <div class="preview-icons">
                     <span  @click.stop="handleRemove">
-        
+                        
                         <span  class="material-symbols-outlined">delete</span>
                     </span>
                     <span @click.stop="toogleRead">
-        
+                        
                         <span  class="material-symbols-outlined" >{{isReadIcon}}</span>
                     </span>
                 </div>
-            </article>
-        </RouterLink> 
     </article>
     `,
     data() {
