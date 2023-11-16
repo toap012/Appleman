@@ -53,8 +53,8 @@ Include a link or GIF showcasing the Vue Gmail Clone App in action.
 ## Authors
 
 - Name: Tomer Appelman
-- GitHub: [toap012](https://github.com/toap012)
-- Email: toap012@gmail.com
+  - GitHub: [toap012](https://github.com/toap012)
+  - Email: toap012@gmail.com
 
 - Name: Iair Schor
-- GitHub: [Iairos](https://github.com/Iairos)
+  - GitHub: [Iairos](https://github.com/Iairos)
